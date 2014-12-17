@@ -1,0 +1,22 @@
+{
+    "name": "lamoni/ipsuite",
+    "description": "PHP utilities for dealing with IPv4 and IPv6 addresses",
+    "license": "MIT",
+    "require": {
+        "php": ">= 5.4.16"
+    },
+    "authors": [
+        { 
+            "name": "Lamoni Finlayson",
+            "email": "lamonif@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/lamoni/ipsuite",
+    "keywords": [
+        "php",
+        "networking",
+        "internet protocol",
+        "ipv4",
+        "ipv6"
+    ]
+}
