@@ -1,8 +1,17 @@
 <?php namespace Lamoni\IPSuite;
 
+/**
+ * Class IPSuite
+ * @package Lamoni\IPSuite
+ */
 abstract class IPSuite
 {
-
+    /**
+     * Converts IPv4 CIDR to subnet mask format
+     *
+     * @param $cidr
+     * @return string
+     */
     static public function ConvertIPv4CIDRToMask($cidr)
     {
         $subnetMask = str_pad("", $cidr, "1");
@@ -20,6 +29,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts IPv4 address to its decimal notation
+     *
+     * @param $ip
+     * @return int
+     */
     static public function ConvertIPv4ToDecimal($ip)
     {
 
@@ -27,6 +42,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts decimal to its IPv4 address notation
+     *
+     * @param $dec
+     * @return string
+     */
     static public function ConvertDecimalToIPv4($dec)
     {
 
@@ -34,6 +55,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts IPv4 and CIDR to decimal notation
+     *
+     * @param $ipAndCidr
+     * @return array
+     */
     static public function ConvertIPv4CIDRToDecimal($ipAndCidr)
     {
 
@@ -49,6 +76,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Gets the "network" address of a given prefix (ip/cidr)
+     *
+     * @param $ipAndCidr
+     * @return string
+     */
     static public function GetIPv4NetworkAddress($ipAndCidr)
     {
 
@@ -58,6 +91,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Gets the "broadcast" address of a given prefix (ip/cidr)
+     *
+     * @param $ipAndCidr
+     * @return string
+     */
     static public function GetIPv4BroadcastAddress($ipAndCidr)
     {
 
@@ -67,6 +106,13 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Checks if a given range is within a range
+     *
+     * @param $ipAndCidrSub
+     * @param $ipAndCidrSuper
+     * @return bool
+     */
     static public function IsIPv4SubnetWithinSupernet($ipAndCidrSub, $ipAndCidrSuper)
     {
 
@@ -94,6 +140,13 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Checks if a given IP address is within a range
+     *
+     * @param $ipOnly
+     * @param $ipAndCidrSuper
+     * @return bool
+     */
     static public function IsIPv4AddressWithinSubnet($ipOnly, $ipAndCidrSuper)
     {
 
@@ -101,6 +154,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Get the number of host addresses in a given subnet
+     *
+     * @param $ipAndCidr
+     * @return int
+     */
     static public function GetIPv4NumberOfHostAddresses($ipAndCidr)
     {
 
@@ -118,12 +177,13 @@ abstract class IPSuite
     }
 
 
-    /***********************************************
-     * IPV6
-     ***********************************************/
-
-
-
+    /**
+     *
+     * Convert IPv6 CIDR to IPv6 mask
+     *
+     * @param $cidr
+     * @return string
+     */
     static public function ConvertIPv6CIDRToMask($cidr)
     {
 
@@ -142,6 +202,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Convert IPv6 address to packed binary
+     *
+     * @param $ip
+     * @return string
+     */
     static public function ConvertIPv6ToBinary($ip)
     {
 
@@ -149,6 +215,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts packed binary to IPv6 address (alias for ConvertIPv6PackedToAddress)
+     *
+     * @param $bin
+     * @return string
+     */
     static public function ConvertBinaryToIPv6($bin)
     {
 
@@ -156,6 +228,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts packed binary to IPv6 address
+     *
+     * @param $packed
+     * @return string
+     */
     static public function ConvertIPv6PackedToAddress($packed)
     {
 
@@ -163,6 +241,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts IP/xxx CIDR to a packed binary for operations
+     *
+     * @param $ipAndCidr
+     * @return array
+     */
     static public function ConvertIPv6CIDRToBinary($ipAndCidr)
     {
 
@@ -178,6 +262,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Get the "network" address of an IPv6 prefix
+     *
+     * @param $ipAndCidr
+     * @return string
+     */
     static public function GetIPv6NetworkAddress($ipAndCidr)
     {
 
@@ -187,6 +277,12 @@ abstract class IPSuite
 
     }
 
+    /**
+     * There is no such thing as a "broadcast" address in IPv6, but I'm keeping this here for use in the "Within" functions
+     *
+     * @param $ipAndCidr
+     * @return string
+     */
     static public function GetIPv6BroadcastAddress($ipAndCidr)
     {
 
@@ -196,7 +292,13 @@ abstract class IPSuite
 
     }
 
-    // CHECK - not sure if binary comparisons work like this...
+    /**
+     * Checks if an IPv6 subnet is within an IPv6 supernet
+     *
+     * @param $ipAndCidrSub
+     * @param $ipAndCidrSuper
+     * @return bool
+     */
     static public function IsIPv6SubnetWithinSupernet($ipAndCidrSub, $ipAndCidrSuper)
     {
 
@@ -226,6 +328,13 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Checks if a IPv6 address is within a range
+     *
+     * @param $ipOnly
+     * @param $ipAndCidrSuper
+     * @return bool
+     */
     static public function IsIPv6AddressWithinSubnet($ipOnly, $ipAndCidrSuper)
     {
 
@@ -233,6 +342,14 @@ abstract class IPSuite
 
     }
 
+    /**
+     * Converts an IPv6 address and formats to leading 0s format
+     *
+     * @todo Refactor the living hell out of this.  I haven't found a corner-case that doesn't work YET, but there's one out there, I know it.
+     * @param $ipv6
+     * @return string
+     * @throws \Exception
+     */
     static public function NormalizeIPv6Address($ipv6)
     {
 
@@ -268,6 +385,7 @@ abstract class IPSuite
         }
 
         return implode(":", $ipv6);
+
     }
 
 
