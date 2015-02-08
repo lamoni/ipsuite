@@ -20,7 +20,7 @@ abstract class IPSuite
 
         $subnetMask = array_map(
             function($x) {
-               return bindec($x);
+                return bindec($x);
             },
             str_split($subnetMask, 8)
         );
@@ -388,6 +388,58 @@ abstract class IPSuite
 
     }
 
+    static public function isIPv4PrefixValid($ipAndCidr)
+    {
 
+        if (strpos($ipAndCidr, '/') === false) {
+
+            return false;
+
+        }
+
+        list($ip, $cidr) = explode("/", $ipAndCidr);
+
+        if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+
+            return false;
+
+        }
+
+        if (is_numeric($cidr) && $cidr >= 0 && $cidr <= 32 ) {
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+    static public function isIPv6PrefixValid($ipAndCidr)
+    {
+
+        if (strpos($ipAndCidr, '/') === false) {
+
+            return false;
+
+        }
+
+        list($ip, $cidr) = explode("/", $ipAndCidr);
+
+        if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+
+            return false;
+
+        }
+
+        if (is_numeric($cidr) && $cidr >= 0 && $cidr <= 32 ) {
+
+            return true;
+
+        }
+
+        return false;
+
+    }
 
 }
