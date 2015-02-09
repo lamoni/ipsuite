@@ -432,7 +432,7 @@ abstract class IPSuite
 
         }
 
-        if (is_numeric($cidr) && $cidr >= 0 && $cidr <= 32 ) {
+        if (is_numeric($cidr) && $cidr >= 0 && $cidr <= 128 ) {
 
             return true;
 
